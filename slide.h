@@ -9,7 +9,7 @@
 #include <string>
 #include <algorithm>
 
-#include "common.h"
+#include "geometry.h"
 #include "object.h"
 
 class Slide

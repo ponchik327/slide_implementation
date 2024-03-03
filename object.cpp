@@ -5,6 +5,11 @@ PrimitiveObject::PrimitiveObject(const Rect& r)
     : rect(r)
 {}
 
+bool PrimitiveObject::IsGropuObject() const
+{
+    return false;
+}
+
 void PrimitiveObject::AddObject(std::unique_ptr<Object>&& unq_ptr_obj)
 {
     throw std::runtime_error("Incorrect use AddObject()");
@@ -37,6 +42,11 @@ const std::vector<std::unique_ptr<Object>>& PrimitiveObject::GetGroup() const
 }
 
 // -------------------------- реализация GroupObject -----------------------------
+bool GroupObject::IsGropuObject() const
+{
+    return true;
+}
+
 void GroupObject::AddObject(std::unique_ptr<Object>&& unq_ptr_obj)
 {
     UpdateRect(unq_ptr_obj->GetSize());

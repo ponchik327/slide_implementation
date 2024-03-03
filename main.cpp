@@ -6,7 +6,8 @@
 
 using namespace std;
 
-ostream& operator <<(ostream& out, const Rect& r)
+// перегрузил для отладки
+std::ostream& operator <<(std::ostream& out, const Rect& r)
 {
     out << "(x, y) : (" << r.x << ", " << r.y << ")\n";
     out << "width: " << r.width << '\n';
@@ -40,6 +41,7 @@ int main()
 
     // проверили, что коректно сработала группировка
     assert(slide->getObject(0).GetSize() == vec_rec[0]);
+    assert(slide->getObject(1).IsGropuObject());
     assert(slide->getObject(1).GetGroup()[0]->GetSize() == vec_rec[1]);
     assert(slide->getObject(1).GetGroup()[1]->GetSize() == vec_rec[2]);
     assert(slide->getObject(2).GetSize() == vec_rec[3]);
@@ -110,6 +112,7 @@ int main()
 
     // удалили группированный объект со слайда
     slide->group(vector<size_t>{1,2});
+    assert(slide->getObject(1).IsGropuObject());
     count_object -= slide->getObject(1).GetCountObjects();
     slide->removeObject(1);
     assert(slide->getObjectsCount() == count_object);
